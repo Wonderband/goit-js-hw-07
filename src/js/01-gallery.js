@@ -1,10 +1,11 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
+
 const modalWindowCloser = (event, mv) => {
     if (event.code === "Escape") {
-        mv.close(); 
-        document.removeEventListener("keydown",  ev => modalWindowCloser(ev, modalWindow));
-        console.log('removed');
+        mv.close();         
+        // I Can't remove the event listener from inside the callback function!!!
+        document.removeEventListener("keydown",  ev => modalWindowCloser(ev, modalWindow));       
     }  
 }
 
