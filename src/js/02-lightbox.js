@@ -11,4 +11,4 @@ for (const galleryItem of galleryItems) {
 const galleryContainer = document.querySelector('.gallery');
 galleryContainer.innerHTML = markUp;
 const lightbox = new SimpleLightbox('.gallery a', 
-{captions: true, captionsData: 'alt', captionsDelay: 250});
+{captions: true, captionsData: 'alt', captionDelay: 250});
