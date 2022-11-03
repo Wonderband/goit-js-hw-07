@@ -1,11 +1,11 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
-const modalWindowCloser = (event, mv) => {
+const modalWindowCloser = event => {
     if (event.code === "Escape") {
-        mv.close();         
+       modalWindow.close();         
         // I Can't remove the event listener from inside the callback function!!!
-        document.removeEventListener("keydown",  ev => modalWindowCloser(ev, modalWindow));       
+        document.removeEventListener("keydown",  modalWindowCloser);       
     }  
 }
 
@@ -14,15 +14,16 @@ const modalWindowOpener = event => {
     if (event.target.tagName !== "IMG")
         return;
     const zoomPictureUrl = event.target.dataset.source;  
-    const modalWindow = basicLightbox.create(`
+    modalWindow = basicLightbox.create(`
     <div class="modal">
         <img src="${zoomPictureUrl}" width="800">
     </div>`);
     modalWindow.show();   
-    document.addEventListener("keydown", ev => modalWindowCloser(ev, modalWindow));  
+    document.addEventListener("keydown", modalWindowCloser);  
 }
 
 let markUp = '';
+let modalWindow;
 for (const galleryItem of galleryItems) {
     markUp += `<div class="gallery__item">
     <a class="gallery__link" href="${galleryItem.original}">
